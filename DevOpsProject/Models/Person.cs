@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Proof_of_Concept_DevOps_Project.Models
+namespace DevOpsProject.Models
 {
     public class Person
     {

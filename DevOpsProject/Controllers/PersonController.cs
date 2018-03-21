@@ -5,15 +5,15 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using Proof_of_Concept_DevOps_Project.Models;
+using DevOpsProject.Models;
 
-namespace Proof_of_Concept_DevOps_Project.Controllers
+namespace DevOpsProject.Controllers
 {
     public class PersonController : Controller
     {
         public static List<Person> persons = new List<Person>();
         public static Person persoon = new Person();
-        public static string uri = "http://trusting_booth/api/person/";
+        public static string uri = "http://goofy_thompson/api/person/";
 
         private IActionResult RedirectToHome()
         {//Terug gaan naar de Index pagina.

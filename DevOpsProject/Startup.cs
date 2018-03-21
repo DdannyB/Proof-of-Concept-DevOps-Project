@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Proof_of_Concept_DevOps_Project
+namespace DevOpsProject
 {
     public class Startup
     {

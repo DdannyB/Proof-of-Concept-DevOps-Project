@@ -16,4 +16,4 @@ RUN dotnet publish -c Release -o /app
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app .
-ENTRYPOINT ["dotnet", "Proof of Concept DevOps Project.dll"] 
+ENTRYPOINT ["dotnet", "DevOpsProject.dll"] 
