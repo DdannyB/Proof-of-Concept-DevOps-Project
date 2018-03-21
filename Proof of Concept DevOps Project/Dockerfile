@@ -1,16 +1,19 @@
-FROM microsoft/aspnetcore-build:2.0 AS build-env
+FROM microsoft/aspnetcore:2.0 AS base
 WORKDIR /app
+EXPOSE 80
 
-# Copy csproj and restore as distinct layers
+FROM microsoft/aspnetcore-build:2.0 AS build
+WORKDIR /src
 COPY *.csproj ./
 RUN dotnet restore
+COPY . .
+WORKDIR /src
+RUN dotnet build -c Release -o /app
 
-# Copy everything else and build
-COPY . ./
-RUN dotnet publish -c Release -o out
+FROM build AS publish
+RUN dotnet publish -c Release -o /app
 
-# Build runtime image
-FROM microsoft/aspnetcore:2.0
+FROM base AS final
 WORKDIR /app
-COPY --from=build-env /app/out .
-ENTRYPOINT ["dotnet", "Proof of Concept DevOps Project.dll"]
+COPY --from=publish /app .
+ENTRYPOINT ["dotnet", "Proof of Concept DevOps Project.dll"] 

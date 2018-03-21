@@ -13,7 +13,7 @@ namespace Proof_of_Concept_DevOps_Project.Controllers
     {
         public static List<Person> persons = new List<Person>();
         public static Person persoon = new Person();
-        public static string uri = "http://pensive_brattain/api/person";
+        public static string uri = "http://nostalgic_dubinsky/api/person/";
 
         private IActionResult RedirectToHome()
         {//Terug gaan naar de Index pagina.
