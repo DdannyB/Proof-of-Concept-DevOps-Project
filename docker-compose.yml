@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  proofofconceptdevopsproject:
+    image: proofofconceptdevopsproject
+    build:
+      context: .
+      dockerfile: Proof of Concept DevOps Project/Dockerfile
+
+  webapi:
+    image: webapi
+    build:
+      context: .
+      dockerfile: WebApplication1/Dockerfile
+

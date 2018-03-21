@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Proof of Concept DevOps Pro
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApi", "WebApplication1\WebApi.csproj", "{93AEEA75-7B4C-4BFD-BB18-2F1DA21A9D49}"
 EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{C8659A01-9502-4F61-A90B-A8DD970BBA2F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{93AEEA75-7B4C-4BFD-BB18-2F1DA21A9D49}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{93AEEA75-7B4C-4BFD-BB18-2F1DA21A9D49}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{93AEEA75-7B4C-4BFD-BB18-2F1DA21A9D49}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C8659A01-9502-4F61-A90B-A8DD970BBA2F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C8659A01-9502-4F61-A90B-A8DD970BBA2F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C8659A01-9502-4F61-A90B-A8DD970BBA2F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C8659A01-9502-4F61-A90B-A8DD970BBA2F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
