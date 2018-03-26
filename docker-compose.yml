@@ -3,9 +3,9 @@ version: '3'
 services:
   devopsproject:
     image: devopsproject
-    container_name: devopsprojectcontainerrrrr
+    container_name: devopsprojectcontainer
     ports:
-    - 1238:80
+    - 1239:80
     depends_on:
       - webapi
     build:
@@ -14,7 +14,7 @@ services:
 
   webapi:
     image: webapi
-    container_name: webapicontainerrrr
+    container_name: webapicontainer
     build:
       context: .
       dockerfile: WebApi/Dockerfile
