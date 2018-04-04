@@ -27,6 +27,9 @@ namespace DevOpsProject
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            //app.UseOtions();
+            //app.AddEnvironmentVariables();
+
             if (env.IsDevelopment())
             {
                 app.UseBrowserLink();
