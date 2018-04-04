@@ -13,7 +13,7 @@ namespace DevOpsProject.Controllers
     {
         public static List<Person> persons = new List<Person>();
         public static Person persoon = new Person();
-        public static string uri = "http://webapicontainerrrr/api/person/";
+        public static string uri = "http://" + Environment.GetEnvironmentVariable("WEBAPI_ENVIRONMENT") + "/api/person/";
 
         private IActionResult RedirectToHome()
         {//Terug gaan naar de Index pagina.
