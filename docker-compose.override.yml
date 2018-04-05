@@ -5,7 +5,7 @@ services:
     image: devopsproject
     container_name: devopsprojectcontainer2
     environment:
-    - WEBAPI_ENVIRONMENT=webapicontainer
+    - WEBAPI_ENVIRONMENT=webapicontainer2
     links:
     - webapi
     build:
