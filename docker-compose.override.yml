@@ -2,14 +2,19 @@ version: '3'
 
 services:
   devopsproject:
+    image: devopsproject
+    container_name: devopsprojectcontainer2
     environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-    ports:
-      - "80"
+    - WEBAPI_ENVIRONMENT=webapicontainer
+    links:
+    - webapi
+    build:
+      context: .
+      dockerfile: DevOpsProject/Dockerfile
 
   webapi:
-    environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-    ports:
-      - "80"
-
+    image: webapi
+    container_name: webapicontainer2
+    build:
+      context: .
+      dockerfile: WebApi/Dockerfile
