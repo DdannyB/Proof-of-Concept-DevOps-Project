@@ -1,22 +1,27 @@
-version: '3'
+version: '3.1'
 
 services:
   devopsproject:
-    image: devopsproject
-    container_name: devopsprojectcontainer
+    image: dannybrouwers/devopsproject
+    networks:
+     - personnetwork
+    secrets:
+    - my_external_secret
     ports:
     - "1230:80"
     environment:
     - WEBAPI_ENVIRONMENT=webapicontainer
-    links:
-    - webapi
-    build:
-      context: .
-      dockerfile: DevOpsProject/Dockerfile
-
+    
   webapi:
-    image: webapi
-    container_name: webapicontainer
-    build:
-      context: .
-      dockerfile: WebApi/Dockerfile
+    image: dannybrouwers/webapi
+    networks:
+      personnetwork:
+        aliases: 
+          - webapicontainer
+
+secrets:
+  my_external_secret:
+    external: true
+
+networks:
+  personnetwork:

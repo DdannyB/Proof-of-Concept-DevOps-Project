@@ -12,7 +12,7 @@ namespace WebApi.Controllers
     public class InspectController : Controller
     {
         // GET: /<controller>/
-        public async Task<IActionResult> Index(string url = "http://webapicontainer/api/person/")
+        public async Task<IActionResult> Index(string url = "http://192.168.1.188:1230/secret")
         {
             ViewBag.Url = url;
             try

@@ -21,18 +21,31 @@ namespace DevOpsProject.Controllers
         }
 
         public async Task<IActionResult> Index()
-        {//Het ophalen van de persoon gegevens in de api.
-            HttpClient client = new HttpClient();
-            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, uri);
-            HttpResponseMessage response = await client.SendAsync(request);
-
-            if (response.IsSuccessStatusCode)
+        {
+            try
             {
-                String responseString = await response.Content.ReadAsStringAsync();
-                persons = JsonConvert.DeserializeObject<List<Person>>(responseString);
-                return View(persons);
+                HttpClient client = new HttpClient();
+                HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, uri);
+                HttpResponseMessage response = await client.SendAsync(request);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    String responseString = await response.Content.ReadAsStringAsync();
+                    persons = JsonConvert.DeserializeObject<List<Person>>(responseString);
+                    return View(persons);
+                }
+            }
+            catch (Exception ex)
+            {
+
+                return View(new List<Person> {
+                    new Person{
+                        Name = ex.Message
+                    }
+                });
             }
 
+            //Het ophalen van de persoon gegevens in de api.
             return View();
         }
 
