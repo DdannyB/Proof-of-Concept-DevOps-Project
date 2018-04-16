@@ -2,7 +2,7 @@ version: '3'
 
 services:
   devopsproject:
-    image: dannybrouwers/devopsproject
+    image: roserdev01.azurecr.io/devopsproject
     container_name: devopsprojectcontainer
     ports:
     - "1232:80"
@@ -15,7 +15,7 @@ services:
       dockerfile: DevOpsProject/Dockerfile
 
   webapi:
-    image: dannybrouwers/webapi
+    image: roserdev01.azurecr.io/webapi
     container_name: webapicontainer
     build:
       context: .

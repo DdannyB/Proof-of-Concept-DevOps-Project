@@ -1,0 +1,57 @@
+version: '3.1'
+
+services:
+  devopsproject:
+    image: roserdev01.azurecr.io/devopsproject
+    networks:
+     - personnetwork
+    secrets:
+    - my_external_secret
+    ports:
+    - "1230:80"
+    environment:
+    - WEBAPI_ENVIRONMENT=webapicontainer
+    
+  webapi:
+    image: roserdev01.azurecr.io/webapi
+    deploy:
+        replicas: 2
+    networks:
+      personnetwork:
+        aliases: 
+          - webapicontainer
+      
+  visualizer:
+    image: dockersamples/visualizer:stable
+    ports:
+      - "8080:8080"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+    deploy:
+      placement:
+        constraints: [node.role == manager]
+    networks:
+      - personnetwork     
+      
+  nginxtest:
+    image: library/nginx
+    ports:
+    - "80:80"
+    volumes:
+    - "postgres:/etc/nginx/conf.d"
+
+secrets:
+  my_external_secret:
+    external: true
+
+networks:
+  personnetwork:
+  
+volumes:
+  postgres:
+    driver: local
+    driver_opts:
+      o: bind
+      type: volume
+      device: C:\Users\dbrouwers\source\repos\DevOpsProject
+  
