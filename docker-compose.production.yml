@@ -4,7 +4,7 @@ services:
   devopsproject:
     image: roserdev01.azurecr.io/devopsproject
     networks:
-     - personnetwork
+    - personnetwork
     secrets:
     - my_external_secret
     ports:
@@ -38,7 +38,10 @@ services:
     ports:
     - "80:80"
     volumes:
-    - "postgres:/etc/nginx/conf.d"
+    - "configuration:/etc/nginx/conf.d"
+    deploy:
+      placement:
+        constraints: [node.role == manager]
 
 secrets:
   my_external_secret:
@@ -48,10 +51,5 @@ networks:
   personnetwork:
   
 volumes:
-  postgres:
-    driver: local
-    driver_opts:
-      o: bind
-      type: volume
-      device: C:\Users\dbrouwers\source\repos\DevOpsProject
-  
+  configuration:
+        external: true
