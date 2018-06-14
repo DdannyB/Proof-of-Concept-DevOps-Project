@@ -5,14 +5,15 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using Proof_of_Concept_DevOps_Project.Models;
+using DevOpsProject.Models;
 
-namespace Proof_of_Concept_DevOps_Project.Controllers
+namespace DevOpsProject.Controllers
 {
     public class PersonController : Controller
     {
         public static List<Person> persons = new List<Person>();
         public static Person persoon = new Person();
+        public static string uri = "http://" + Environment.GetEnvironmentVariable("WEBAPI_ENVIRONMENT") + "/api/person/";
 
         private IActionResult RedirectToHome()
         {//Terug gaan naar de Index pagina.
@@ -20,18 +21,31 @@ namespace Proof_of_Concept_DevOps_Project.Controllers
         }
 
         public async Task<IActionResult> Index()
-        {//Het ophalen van de persoon gegevens in de api.
-            HttpClient client = new HttpClient();
-            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, "http://localhost:51055/api/person");
-            HttpResponseMessage response = await client.SendAsync(request);
-
-            if (response.IsSuccessStatusCode)
+        {
+            try
             {
-                String responseString = await response.Content.ReadAsStringAsync();
-                persons = JsonConvert.DeserializeObject<List<Person>>(responseString);
-                return View(persons);
+                HttpClient client = new HttpClient();
+                HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, uri);
+                HttpResponseMessage response = await client.SendAsync(request);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    String responseString = await response.Content.ReadAsStringAsync();
+                    persons = JsonConvert.DeserializeObject<List<Person>>(responseString);
+                    return View(persons);
+                }
+            }
+            catch (Exception ex)
+            {
+
+                return View(new List<Person> {
+                    new Person{
+                        Name = ex.Message
+                    }
+                });
             }
 
+            //Het ophalen van de persoon gegevens in de api.
             return View();
         }
 
@@ -46,7 +60,7 @@ namespace Proof_of_Concept_DevOps_Project.Controllers
             HttpContent content = new StringContent(JsonConvert.SerializeObject(p), System.Text.Encoding.UTF8, "application/json");
 
             HttpClient client = new HttpClient();
-            var post = client.PostAsync("http://localhost:51055/api/person/", content);
+            var post = client.PostAsync(uri, content);
             post.Wait();
             var result = post.Result;
 
@@ -70,7 +84,7 @@ namespace Proof_of_Concept_DevOps_Project.Controllers
             HttpContent content = new StringContent(JsonConvert.SerializeObject(p), System.Text.Encoding.UTF8, "application/json");
 
             HttpClient client = new HttpClient();
-            var post = client.PutAsync("http://localhost:51055/api/person/" + p.Id, content);
+            var post = client.PutAsync(uri + p.Id, content);
             post.Wait();
             var result = post.Result;
 
@@ -94,7 +108,7 @@ namespace Proof_of_Concept_DevOps_Project.Controllers
             HttpContent content = new StringContent(JsonConvert.SerializeObject(p), System.Text.Encoding.UTF8, "application/json");
 
             HttpClient client = new HttpClient();
-            var post = client.DeleteAsync("http://localhost:51055/api/person/" + p.Id);
+            var post = client.DeleteAsync(uri + p.Id);
             post.Wait();
             var result = post.Result;
 

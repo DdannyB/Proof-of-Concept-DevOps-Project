@@ -1,0 +1,27 @@
+version: '3.1'
+
+services:
+  devopsproject:
+    image: dannybrouwers/devopsproject
+    networks:
+     - personnetwork
+    secrets:
+    - my_external_secret
+    ports:
+    - "1230:80"
+    environment:
+    - WEBAPI_ENVIRONMENT=webapicontainer
+    
+  webapi:
+    image: dannybrouwers/webapi
+    networks:
+      personnetwork:
+        aliases: 
+          - webapicontainer
+
+secrets:
+  my_external_secret:
+    external: true
+
+networks:
+  personnetwork:
