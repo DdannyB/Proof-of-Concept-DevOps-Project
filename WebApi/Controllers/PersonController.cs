@@ -28,6 +28,12 @@ namespace WebApi.Controllers
                         Name = "Brouwers",
                         Age = 23
 
+                    },
+                    new Person
+                    {
+                        Id = 3,
+                        Name = "DevOps",
+                        Age = 1
                     }
                 };
 

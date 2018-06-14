@@ -1,0 +1,114 @@
+﻿using System;
+using System.Collections.Generic;
+
+namespace WebApi.Database
+{
+    public partial class TblP6sessionPlancard
+    {
+        public long PkP6sessionplancardid { get; set; }
+        public long FkP6sessionid { get; set; }
+        public long? FkScopeid { get; set; }
+        public long? DkScopejobid { get; set; }
+        public long? DkScopejobdetailresid { get; set; }
+        public int? Oldid { get; set; }
+        public string Olddb { get; set; }
+        public string Createcomputer { get; set; }
+        public string Createuser { get; set; }
+        public DateTime Createdate { get; set; }
+        public string Modifycomputer { get; set; }
+        public string Modifyuser { get; set; }
+        public DateTime Modifydate { get; set; }
+        public string Ordernr { get; set; }
+        public string Jobdescr { get; set; }
+        public string Jobnr { get; set; }
+        public string Job { get; set; }
+        public int? Progress { get; set; }
+        public string Phasenr { get; set; }
+        public string Phase { get; set; }
+        public string Mainphase { get; set; }
+        public string Calendarcode { get; set; }
+        public decimal? Templdur { get; set; }
+        public decimal? Plandur { get; set; }
+        public string Rescode { get; set; }
+        public string Scoperesponsible { get; set; }
+        public string Resname { get; set; }
+        public bool? Approved { get; set; }
+        public int? Crew { get; set; }
+        public string Shortcode { get; set; }
+        public int? Scopenr { get; set; }
+        public string Floc { get; set; }
+        public string Adis { get; set; }
+        public string Adisdescr { get; set; }
+        public string Rdis { get; set; }
+        public string Rdisdescr { get; set; }
+        public string Scop { get; set; }
+        public string Scopdescr { get; set; }
+        public string Shco { get; set; }
+        public string Shcodescr { get; set; }
+        public string Eqpt { get; set; }
+        public string Eqptdescr { get; set; }
+        public string Parenteqptagnr { get; set; }
+        public string Parenteqptagnrdescr { get; set; }
+        public string Loc { get; set; }
+        public string Locdescr { get; set; }
+        public string Sccd { get; set; }
+        public string Sccddescr { get; set; }
+        public string Sbs1 { get; set; }
+        public string Sbs1descr { get; set; }
+        public string Sbs1export { get; set; }
+        public string Sbs2 { get; set; }
+        public string Sbs2descr { get; set; }
+        public string Sbs2export { get; set; }
+        public string Sbs3 { get; set; }
+        public string Sbs3descr { get; set; }
+        public string Sbs3export { get; set; }
+        public string Wbs { get; set; }
+        public string Wbsdescr { get; set; }
+        public string Cbs { get; set; }
+        public string Cbsdescr { get; set; }
+        public string Obs { get; set; }
+        public string Obsdescr { get; set; }
+        public string Pau { get; set; }
+        public string Paudescr { get; set; }
+        public string Qc { get; set; }
+        public decimal? Templhrs { get; set; }
+        public int? Countqcjob { get; set; }
+        public decimal? Esthrs { get; set; }
+        public double? Calchrs { get; set; }
+        public string Contractor { get; set; }
+        public int? Contractornr { get; set; }
+        public string Libcode { get; set; }
+        public string Libdescr { get; set; }
+        public int? Concurrentresources { get; set; }
+        public int? Ctr { get; set; }
+        public string Ctrdescr { get; set; }
+        public int? Mainctr { get; set; }
+        public string Mainctrdescr { get; set; }
+        public string Eqcod { get; set; }
+        public string Eqcoddescr { get; set; }
+        public string Cscodes { get; set; }
+        public string Planningmemo { get; set; }
+        public string Jobmemo { get; set; }
+        public string Wonr { get; set; }
+        public string Notificationnr { get; set; }
+        public string Scopeprio { get; set; }
+        public string Scopelabel { get; set; }
+        public string Parentscopenr { get; set; }
+        public string Parentscopenrdescr { get; set; }
+        public string Parentscopeeqptagnr { get; set; }
+        public string Parentscopeeqptagnrdescr { get; set; }
+        public string Areacodecode { get; set; }
+        public string Areacodedescription { get; set; }
+        public string Buildingcode { get; set; }
+        public string Buildingdescription { get; set; }
+        public string Location { get; set; }
+        public string Elevation { get; set; }
+        public string Processarea { get; set; }
+        public string Processareadescription { get; set; }
+        public string Sce { get; set; }
+        public DateTime? Scopechange { get; set; }
+
+        public TblP6session FkP6session { get; set; }
+        public TblScope FkScope { get; set; }
+    }
+}

@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: webapipod
+  labels:
+    app: webapipod
+spec:
+  containers:
+  - name: webapipod
+    image: dannybrouwers/webapi
+    imagePullPolicy: Always
+    ports:
+    - containerPort: 3000
+    

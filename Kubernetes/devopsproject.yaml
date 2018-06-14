@@ -1,0 +1,48 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: devopsproject
+  name: devopsproject
+spec:
+  ports:
+   - port: 80
+     nodeport: 31000
+  selector:
+    app: devopsproject
+    tier: frontend
+  type: NodePort
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    app: devopsproject
+  name: devopsproject
+spec:
+  selector:
+    matchLabels:
+      app: devopsproject
+      tier: frontend
+  strategy:
+    type: Recreate
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: devopsproject
+        tier: frontend
+    spec:
+      containers:
+      - env:
+        - name: WEBAPI_ENVIRONMENT
+          value: webapicontainer
+        - name: my_external_secret
+          valueFrom:
+            secretKeyRef:
+              name: my-external-secret
+              key: password
+        image: dannybrouwers/devopsproject
+        name: devopsproject
+        ports:
+        - containerPort: 80

@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kompose.cmd: C:\ProgramData\chocolatey\lib\kubernetes-kompose\tools\kompose.exe
+      convert -f kubernetes.production.yml
+    kompose.version: 1.12.0 (0ab07be)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: webapi
+  name: webapi
+spec:
+  type: ExternalName
+  externalName: devopsproject.default.cluster.local
+  ports:
+   - port: 80
+status:
+  loadBalancer: {}

@@ -1,0 +1,40 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: webapicontainer
+  name: webapicontainer
+spec:
+  ports:
+   - port: 80
+     nodeport: 31001
+  selector:
+    app: webapicontainer
+    tier: backend
+  type: NodePort
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    app: webapicontainer
+  name: webapicontainer
+spec:
+  selector:
+    matchLabels:
+      app: webapicontainer
+      tier: backend
+  strategy:
+    type: Recreate
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: webapicontainer
+        tier: backend
+    spec:
+      containers:
+      - image: dannybrouwers/webapi
+        name: webapicontainer
+        ports:
+        - containerPort: 80

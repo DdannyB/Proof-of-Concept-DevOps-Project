@@ -1,0 +1,42 @@
+version: '3.1'
+
+services:
+  devopsproject:
+    image: dannybrouwers/devopsproject
+    networks:
+    - personnetwork
+    secrets:
+    - my_external_secret
+    ports:
+    - "1230:80"
+    environment:
+    - WEBAPI_ENVIRONMENT=webapicontainer
+    
+  webapicontainer:
+    image: dannybrouwers/webapi
+    ports:
+    - "1231:80"
+    deploy:
+        replicas: 1
+    networks:
+      personnetwork:
+        aliases: 
+          - webapicontainer
+      
+  nginxtest:
+    image: library/nginx
+    ports:
+    - "80:80"
+    volumes:
+    - "configuration:/etc/nginx/conf.d"
+
+secrets:
+  my_external_secret:
+    external: true
+
+networks:
+  personnetwork:
+  
+volumes:
+  configuration:
+        external: true
