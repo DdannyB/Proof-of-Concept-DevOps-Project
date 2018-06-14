@@ -15,7 +15,7 @@ namespace WebApi.Controllers
         [HttpGet]
         public IEnumerable<string> Get()
         {
-            var db = new Database.rosercatalog_sandboxContext();
+            var db = new ;
 
             return new string[] { "value1", "value2" };
         }
