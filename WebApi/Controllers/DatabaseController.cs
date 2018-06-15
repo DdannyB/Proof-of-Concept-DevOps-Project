@@ -38,19 +38,36 @@ namespace WebApi.Controllers
         [HttpPost]
         public void Post([FromBody]Names value)
         {
-            _context.Names.Add( new Names { Id = value.Id, Name = value.Name, Age = value.Age });
+            Names newname = new Names
+            {
+                Name = value.Name,
+                Age = value.Age
+            };
+
+
+            _context.Names.Add(newname);
+            _context.SaveChanges();
         }
 
         // PUT api/<controller>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
+        public Names Edit(int id, [FromBody]Names name)
         {
+            Names editname = _context.Names.FirstOrDefault(x => x.Id == id);
+            editname.Name = name.Name;
+            editname.Age = name.Age;
+            _context.SaveChanges();
+            return editname;
+            
         }
 
         // DELETE api/<controller>/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+            Names removename = _context.Names.FirstOrDefault(x => x.Id == id);
+            _context.Names.Remove(removename);
+            _context.SaveChanges();
         }
     }
 }

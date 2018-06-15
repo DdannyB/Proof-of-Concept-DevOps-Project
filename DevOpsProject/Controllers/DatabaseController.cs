@@ -13,7 +13,7 @@ namespace DevOpsProject.Controllers
     {
         public Names name = new Names();
         public static string uri = "http://" + Environment.GetEnvironmentVariable("WEBAPI_ENVIRONMENT") + "/api/database/";
-        public List<Names> names = new List<Names>();
+        public static List<Names> names = new List<Names>();
 
         private IActionResult RedirectToHome()
         {//Terug gaan naar de Index pagina.
@@ -57,10 +57,67 @@ namespace DevOpsProject.Controllers
         [HttpPost]
         public IActionResult Create(Names p)
         {//De nieuwe persoon toevoegen aan de list in de api.
+
+            try
+            {
+                HttpContent content = new StringContent(JsonConvert.SerializeObject(p), System.Text.Encoding.UTF8, "application/json");
+
+                HttpClient client = new HttpClient();
+                var post = client.PostAsync(uri, content);
+                post.Wait();
+                var result = post.Result;
+
+                if (result.IsSuccessStatusCode)
+                {
+                    return RedirectToHome();
+                }
+
+                return View(p);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+        }
+
+        public ActionResult Edit(int Id)
+        {//het openen van de edit pagina en de gegevens van de juiste persoon inladen
+            name = names.Where(x => x.Id == Id).FirstOrDefault();
+            return View(name);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(Names p)
+        {//De gegevens die aangepast moeten worden doorsturen naar de api.
             HttpContent content = new StringContent(JsonConvert.SerializeObject(p), System.Text.Encoding.UTF8, "application/json");
 
             HttpClient client = new HttpClient();
-            var post = client.PostAsync(uri, content);
+            var post = client.PutAsync(uri + p.Id, content);
+            post.Wait();
+            var result = post.Result;
+
+            if (result.IsSuccessStatusCode)
+            {
+                return RedirectToHome();
+            }
+
+            return View(p);
+        }
+
+        public ActionResult Delete(int Id)
+        {//Het scherm laden om de geselecteerde persoon te verwijderen.
+            name = names.Where(x => x.Id == Id).FirstOrDefault();
+            return View(name);
+        }
+
+        [HttpPost]
+        public IActionResult Delete(Names p)
+        {//De geselecteerde persoon verwijderen uit de list in de api.
+            HttpContent content = new StringContent(JsonConvert.SerializeObject(p), System.Text.Encoding.UTF8, "application/json");
+
+            HttpClient client = new HttpClient();
+            var post = client.DeleteAsync(uri + p.Id);
             post.Wait();
             var result = post.Result;
 
