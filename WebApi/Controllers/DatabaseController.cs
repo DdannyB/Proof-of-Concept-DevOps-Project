@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using WebApi.Database;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -11,13 +12,19 @@ namespace WebApi.Controllers
     [Route("api/[controller]")]
     public class DatabaseController : Controller
     {
+        private DannyStageDBContext _context;
+        public static List<Names> nameslist;
+
+        public DatabaseController(DannyStageDBContext context)
+        {
+            _context = context;
+        }
         // GET: api/<controller>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public List<Names> Get()
         {
-            var db = new ;
-
-            return new string[] { "value1", "value2" };
+            nameslist = _context.Names.ToList();
+            return nameslist;
         }
 
         // GET api/<controller>/5
@@ -29,8 +36,9 @@ namespace WebApi.Controllers
 
         // POST api/<controller>
         [HttpPost]
-        public void Post([FromBody]string value)
+        public void Post([FromBody]Names value)
         {
+            _context.Names.Add( new Names { Id = value.Id, Name = value.Name, Age = value.Age });
         }
 
         // PUT api/<controller>/5

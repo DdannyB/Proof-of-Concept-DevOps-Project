@@ -1,8 +1,8 @@
-version: '3.1'
+version: '3.6'
 
 services:
   devopsproject:
-    image: dannybrouwers/devopsproject:latest
+    image: roserdev01.azurecr.io/devopsproject
     networks:
     - personnetwork
     secrets:
@@ -13,9 +13,9 @@ services:
     - WEBAPI_ENVIRONMENT=webapicontainer
     
   webapi:
-    image: dannybrouwers/webapi:latest
+    image: roserdev01.azurecr.io/webapi
     deploy:
-        replicas: 2        
+        replicas: 1   
     networks:
       personnetwork:
         aliases: 

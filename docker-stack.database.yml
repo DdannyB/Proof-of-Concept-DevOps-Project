@@ -1,0 +1,33 @@
+version: '3.6'
+
+services:
+  devopsproject:
+    image: database/devopsproject
+    networks:
+    - personnetwork
+    secrets:
+    - my_external_secret
+    ports:
+    - "1230:80"
+    environment:
+    - WEBAPI_ENVIRONMENT=webapicontainer
+    
+  webapi:
+    image: database/webapi
+    deploy:
+        replicas: 1   
+    networks:
+      personnetwork:
+        aliases: 
+          - webapicontainer
+      
+secrets:
+  my_external_secret:
+    external: true
+
+networks:
+  personnetwork:
+  
+volumes:
+  configuration:
+        external: true

@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace WebApi.Database
+namespace DevOpsProject.Models
 {
-    public partial class Names
+    public class Names
     {
         public int Id { get; set; }
         public string Name { get; set; }

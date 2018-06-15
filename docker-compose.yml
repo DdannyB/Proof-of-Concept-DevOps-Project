@@ -1,21 +1,19 @@
-version: '3.4'
+version: '3.6'
 
 services:
   devopsproject:
-    image: roserdev01.azurecr.io/devopsproject
+    image: dannybrouwers/devopsproject
     container_name: devopsprojectcontainer
     ports:
     - "1232:80"
     environment:
-    - WEBAPI_ENVIRONMENT=webapicontainer
-    links:
-    - webapi
+      - WEBAPI_ENVIRONMENT=webapicontainer
     build:
       context: .
       dockerfile: DevOpsProject/Dockerfile
 
   webapi:
-    image: roserdev01.azurecr.io/webapi
+    image: dannybrouwers/webapi
     container_name: webapicontainer
     build:
       context: .

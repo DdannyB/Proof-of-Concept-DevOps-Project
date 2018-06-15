@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
-namespace DevOpsProject.Database
+namespace WebApi.Database
 {
     public partial class DannyStageDBContext : DbContext
     {
@@ -30,9 +30,12 @@ namespace DevOpsProject.Database
         {
             modelBuilder.Entity<Names>(entity =>
             {
-                entity.HasKey(e => e.NameId);
+                entity.HasKey(e => e.Id);
 
-                entity.Property(e => e.NameLength).IsRequired();
+                entity.Property(e => e.Name);
+
+                entity.Property(e => e.Age);
+
             });
         }
     }

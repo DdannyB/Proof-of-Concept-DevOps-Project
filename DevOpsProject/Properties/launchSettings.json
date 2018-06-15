@@ -20,6 +20,7 @@
       "commandName": "Project",
       "launchBrowser": true,
       "environmentVariables": {
+        "WEBAPI_ENVIRONMENT": "webapicontainer",
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
       "applicationUrl": "http://localhost:51048/"

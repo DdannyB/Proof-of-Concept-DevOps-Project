@@ -13,6 +13,8 @@
       "launchBrowser": true,
       "launchUrl": "http://localhost:51055/api/person",
       "environmentVariables": {
+        "Key": "Value",
+        "WEBAPI_ENVIRONMENT": "webapicontainer",
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
