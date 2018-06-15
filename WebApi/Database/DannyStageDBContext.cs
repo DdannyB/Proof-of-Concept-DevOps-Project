@@ -15,7 +15,7 @@ namespace WebApi.Database
         {
         }
 
-        public virtual DbSet<Names> Names { get; set; }
+        public virtual DbSet<DataBasePerson> DBperson { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -28,7 +28,7 @@ namespace WebApi.Database
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Names>(entity =>
+            modelBuilder.Entity<DataBasePerson>(entity =>
             {
                 entity.HasKey(e => e.Id);
 

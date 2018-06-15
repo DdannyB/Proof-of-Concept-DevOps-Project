@@ -13,7 +13,7 @@ namespace WebApi.Controllers
     public class DatabaseController : Controller
     {
         private DannyStageDBContext _context;
-        public static List<Names> nameslist;
+        public static List<DataBasePerson> dbpersonlist;
 
         public DatabaseController(DannyStageDBContext context)
         {
@@ -21,10 +21,10 @@ namespace WebApi.Controllers
         }
         // GET: api/<controller>
         [HttpGet]
-        public List<Names> Get()
+        public List<DataBasePerson> Get()
         {
-            nameslist = _context.Names.ToList();
-            return nameslist;
+            dbpersonlist = _context.DBperson.ToList();
+            return dbpersonlist;
         }
 
         // GET api/<controller>/5
@@ -36,28 +36,28 @@ namespace WebApi.Controllers
 
         // POST api/<controller>
         [HttpPost]
-        public void Post([FromBody]Names value)
+        public void Post([FromBody]DataBasePerson value)
         {
-            Names newname = new Names
+            DataBasePerson newperson = new DataBasePerson
             {
                 Name = value.Name,
                 Age = value.Age
             };
 
 
-            _context.Names.Add(newname);
+            _context.DBperson.Add(newperson);
             _context.SaveChanges();
         }
 
         // PUT api/<controller>/5
         [HttpPut("{id}")]
-        public Names Edit(int id, [FromBody]Names name)
+        public DataBasePerson Edit(int id, [FromBody]DataBasePerson person)
         {
-            Names editname = _context.Names.FirstOrDefault(x => x.Id == id);
-            editname.Name = name.Name;
-            editname.Age = name.Age;
+            DataBasePerson editperson = _context.DBperson.FirstOrDefault(x => x.Id == id);
+            editperson.Name = person.Name;
+            editperson.Age = person.Age;
             _context.SaveChanges();
-            return editname;
+            return editperson;
             
         }
 
@@ -65,8 +65,8 @@ namespace WebApi.Controllers
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
-            Names removename = _context.Names.FirstOrDefault(x => x.Id == id);
-            _context.Names.Remove(removename);
+            DataBasePerson removeperson = _context.DBperson.FirstOrDefault(x => x.Id == id);
+            _context.DBperson.Remove(removeperson);
             _context.SaveChanges();
         }
     }
