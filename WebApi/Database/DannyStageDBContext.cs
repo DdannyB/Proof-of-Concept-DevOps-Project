@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using WebApi.Models;
 
 namespace WebApi.Database
 {
@@ -16,14 +17,7 @@ namespace WebApi.Database
         }
 
         public virtual DbSet<DataBasePerson> DBperson { get; set; }
-
-        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        //{
-        //    //if (!optionsBuilder.IsConfigured)
-        //    //{
-        //    //    optionsBuilder.UseSqlServer("Server=localhost\\SQLEXPRESS;Database=DannyStageDB;User ID=danny;Password=danny;");
-        //    //}
-        //}
+        public virtual DbSet<Tags> Tags { get; set; }
         
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         { 
@@ -36,6 +30,16 @@ namespace WebApi.Database
                 entity.Property(e => e.Age);
 
             });
+
+            modelBuilder.Entity<Tags>(entity =>
+            {
+                entity.HasKey(e => e.Id);
+
+                entity.Property(e => e.Name);
+
+            });
+
+
         }
     }
 }

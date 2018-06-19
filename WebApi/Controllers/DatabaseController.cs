@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
+using WebApi.Models;
 using WebApi.Database;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -52,7 +53,7 @@ namespace WebApi.Controllers
         [HttpPut("{id}")]
         public DataBasePerson Edit(int id, [FromBody]DataBasePerson person)
         {
-            DataBasePerson editperson = _context.DBperson.FirstOrDefault(x => x.Id == id);
+            DataBasePerson editperson = _context.DBperson.SingleOrDefault(x => x.Id == id);
             editperson.Name = person.Name;
             editperson.Age = person.Age;
             _context.SaveChanges();

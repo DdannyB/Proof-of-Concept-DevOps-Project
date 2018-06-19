@@ -11,7 +11,7 @@ namespace DevOpsProject.Libs.GatewayManager
 {
     public class GatewayManager
     {
-        public async Task<List<DataBasePerson>> GetPersonlistAsync(string uri)
+        public async Task<List<T>> GetlistAsync<T>(string uri)
         {
             using (var client = new HttpClient())
             {
@@ -21,14 +21,14 @@ namespace DevOpsProject.Libs.GatewayManager
                 if (result.IsSuccessStatusCode)
                 {
                     String responseString = await result.Content.ReadAsStringAsync();
-                    var dbpersonlist = JsonConvert.DeserializeObject<List<DataBasePerson>>(responseString);
+                    var dbpersonlist = JsonConvert.DeserializeObject<List<T>>(responseString);
                     return dbpersonlist;
                 }
                 return null;
             }
         }
 
-        public async Task<DataBasePerson> GetPersonAsync(string uri, int id)
+        public async Task<T> GetAsync<T>(string uri, int id)
         {
             using (var client = new HttpClient())
             {
@@ -38,15 +38,15 @@ namespace DevOpsProject.Libs.GatewayManager
                 if (result.IsSuccessStatusCode)
                 {
                     String responseString = await result.Content.ReadAsStringAsync();
-                    var dbperson = JsonConvert.DeserializeObject<DataBasePerson>(responseString);
+                    var dbperson = JsonConvert.DeserializeObject<T>(responseString);
                     return dbperson;
                 }
-                return null;
+                return default(T);
             }
         }
 
 
-        public async Task<HttpResponseMessage> PostPersonAsync(string uri, DataBasePerson p)
+        public async Task<HttpResponseMessage> PostAsync<T>(string uri, T p)
         {
             using (var client = new HttpClient())
             {
@@ -56,20 +56,20 @@ namespace DevOpsProject.Libs.GatewayManager
         }  
         
 
-        public async Task<HttpResponseMessage> EditPersonAsync(string uri, DataBasePerson p)
+        public async Task<HttpResponseMessage> EditAsync<T>(string uri, T p)
         {
             using (var client = new HttpClient())
             {
                 var content = new StringContent(JsonConvert.SerializeObject(p), System.Text.Encoding.UTF8, "application/json");
-                return await client.PutAsync(uri + p.Id, content);
+                return await client.PutAsync(uri, content);
             }
         }
 
-        public async Task<HttpResponseMessage> DeletePersonAsync(string uri, DataBasePerson p)
+        public async Task<HttpResponseMessage> DeleteAsync<T>(string uri, T p)
         {
             using (var client = new HttpClient())
             {
-                return await client.DeleteAsync(uri + p.Id);
+                return await client.DeleteAsync(uri);
             }
         }
     }
