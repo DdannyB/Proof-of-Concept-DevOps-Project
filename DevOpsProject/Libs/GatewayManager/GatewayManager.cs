@@ -11,13 +11,9 @@ namespace DevOpsProject.Libs.GatewayManager
 {
     public class GatewayManager
     {
-        HttpClient client;
-        HttpResponseMessage result;
-        HttpContent content;
-
-        public async Task<List<DataBasePerson>> GetAsync(string uri)
+        public async Task<List<DataBasePerson>> GetPersonlistAsync(string uri)
         {
-            using (client = new HttpClient())
+            using (var client = new HttpClient())
             {
                 var request = new HttpRequestMessage(HttpMethod.Get, uri);
                 var result = await client.SendAsync(request);
@@ -32,19 +28,49 @@ namespace DevOpsProject.Libs.GatewayManager
             }
         }
 
-        public Boolean Post(string uri, DataBasePerson p)
+        public async Task<DataBasePerson> GetPersonAsync(string uri, int id)
         {
-          content = new StringContent(JsonConvert.SerializeObject(p), System.Text.Encoding.UTF8, "application/json");
-
-            var post = client.PostAsync(uri, content);
-            post.Wait();
-            result = post.Result;
-
-            if (result.IsSuccessStatusCode == true)
+            using (var client = new HttpClient())
             {
-                return result.IsSuccessStatusCode;
+                var request = new HttpRequestMessage(HttpMethod.Get, uri + id);
+                var result = await client.SendAsync(request);
+
+                if (result.IsSuccessStatusCode)
+                {
+                    String responseString = await result.Content.ReadAsStringAsync();
+                    var dbperson = JsonConvert.DeserializeObject<DataBasePerson>(responseString);
+                    return dbperson;
+                }
+                return null;
             }
-            return false;
+        }
+
+
+        public async Task<HttpResponseMessage> PostPersonAsync(string uri, DataBasePerson p)
+        {
+            using (var client = new HttpClient())
+            {
+                var content = new StringContent(JsonConvert.SerializeObject(p), System.Text.Encoding.UTF8, "application/json");
+                return await client.PostAsync(uri, content);
+            }
+        }  
+        
+
+        public async Task<HttpResponseMessage> EditPersonAsync(string uri, DataBasePerson p)
+        {
+            using (var client = new HttpClient())
+            {
+                var content = new StringContent(JsonConvert.SerializeObject(p), System.Text.Encoding.UTF8, "application/json");
+                return await client.PutAsync(uri + p.Id, content);
+            }
+        }
+
+        public async Task<HttpResponseMessage> DeletePersonAsync(string uri, DataBasePerson p)
+        {
+            using (var client = new HttpClient())
+            {
+                return await client.DeleteAsync(uri + p.Id);
+            }
         }
     }
 }

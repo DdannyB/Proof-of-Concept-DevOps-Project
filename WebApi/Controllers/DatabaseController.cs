@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using WebApi.Database;
 
@@ -13,7 +11,7 @@ namespace WebApi.Controllers
     public class DatabaseController : Controller
     {
         private DannyStageDBContext _context;
-        public static List<DataBasePerson> dbpersonlist;
+        public static List<DataBasePerson> dbpersonlist = new List<DataBasePerson>();
 
         public DatabaseController(DannyStageDBContext context)
         {
@@ -29,9 +27,10 @@ namespace WebApi.Controllers
 
         // GET api/<controller>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public DataBasePerson Get(int id)
         {
-            return "value";
+            DataBasePerson dbperson = _context.DBperson.SingleOrDefault(x => x.Id == id);
+            return dbperson;
         }
 
         // POST api/<controller>
