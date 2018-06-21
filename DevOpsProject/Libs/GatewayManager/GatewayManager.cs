@@ -1,9 +1,6 @@
-﻿using DevOpsProject.Models;
-using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 
@@ -11,7 +8,7 @@ namespace DevOpsProject.Libs.GatewayManager
 {
     public class GatewayManager
     {
-        public async Task<List<T>> GetlistAsync<T>(string uri)
+        public async virtual Task<List<T>> GetlistAsync<T>(string uri)
         {
             using (var client = new HttpClient())
             {
@@ -45,8 +42,7 @@ namespace DevOpsProject.Libs.GatewayManager
             }
         }
 
-
-        public async Task<HttpResponseMessage> PostAsync<T>(string uri, T p)
+        public async virtual Task<HttpResponseMessage> PostAsync<T>(string uri, T p)
         {
             using (var client = new HttpClient())
             {
@@ -55,7 +51,6 @@ namespace DevOpsProject.Libs.GatewayManager
             }
         }  
         
-
         public async Task<HttpResponseMessage> EditAsync<T>(string uri, T p)
         {
             using (var client = new HttpClient())

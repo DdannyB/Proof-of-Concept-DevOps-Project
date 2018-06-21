@@ -64,7 +64,7 @@ namespace WebApi.Controllers
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
-            Tags removetag = _context.Tags.FirstOrDefault(x => x.Id == id);
+            Tags removetag = _context.Tags.SingleOrDefault(x => x.Id == id);
             _context.Tags.Remove(removetag);
             _context.SaveChanges();
         }

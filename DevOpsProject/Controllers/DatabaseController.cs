@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
 using DevOpsProject.Models;
 using DevOpsProject.Libs.GatewayManager;
 
@@ -12,10 +9,16 @@ namespace DevOpsProject.Controllers
 {
     public class DatabaseController : Controller
     {
+        private GatewayManager gatewayManager = null;
         public DataBasePerson dbperson = new DataBasePerson();      
         public static List<DataBasePerson> dbpersonlist = new List<DataBasePerson>();
         public static string uri = "http://" + Environment.GetEnvironmentVariable("WEBAPI_ENVIRONMENT") + "/api/database/";
-        
+
+        public DatabaseController(GatewayManager gateway)
+        {
+            gatewayManager = gateway;
+        }
+
         public IActionResult RedirectToHome()
         {
             return RedirectToAction(nameof(Index));
@@ -25,7 +28,7 @@ namespace DevOpsProject.Controllers
         {
             try
             {
-                dbpersonlist = await new GatewayManager().GetlistAsync<DataBasePerson>(uri);
+                dbpersonlist = await gatewayManager.GetlistAsync<DataBasePerson>(uri);
                 return View(dbpersonlist);
             }
             catch (Exception ex)
@@ -48,7 +51,7 @@ namespace DevOpsProject.Controllers
         {//De nieuwe persoon toevoegen aan de list in de api.
             try
             {
-                var SuccessStatusCode = await new GatewayManager().PostAsync<DataBasePerson>(uri, p);
+                var SuccessStatusCode = await gatewayManager.PostAsync<DataBasePerson>(uri, p);
                 if (SuccessStatusCode.IsSuccessStatusCode)
                 {
                     return RedirectToHome();
@@ -96,7 +99,7 @@ namespace DevOpsProject.Controllers
         {//De geselecteerde persoon verwijderen uit de list in de api.
             try
             {
-                var SuccessStatusCode = await new GatewayManager().DeleteAsync(uri + p.Id, p);
+                var SuccessStatusCode = await new GatewayManager().DeleteAsync<DataBasePerson>(uri + p.Id, p);
                 if (SuccessStatusCode.IsSuccessStatusCode)
                 {
                     return RedirectToHome();
