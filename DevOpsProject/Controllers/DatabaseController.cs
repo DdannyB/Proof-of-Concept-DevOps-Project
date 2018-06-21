@@ -29,8 +29,9 @@ namespace DevOpsProject.Controllers
             try
             {
                 dbpersonlist = await gatewayManager.GetlistAsync<DataBasePerson>(uri);
-                return View(dbpersonlist);
+                return View(dbpersonlist);           
             }
+      
             catch (Exception ex)
             {
                 return View(new List<DataBasePerson> {
@@ -51,10 +52,21 @@ namespace DevOpsProject.Controllers
         {//De nieuwe persoon toevoegen aan de list in de api.
             try
             {
-                var SuccessStatusCode = await gatewayManager.PostAsync<DataBasePerson>(uri, p);
-                if (SuccessStatusCode.IsSuccessStatusCode)
+                if (string.IsNullOrEmpty(p.Name))
                 {
-                    return RedirectToHome();
+                    ModelState.AddModelError("Name", "Name is required");
+                }
+                if (string.IsNullOrEmpty(p.Age.ToString()))
+                {
+                    ModelState.AddModelError("Age", "Age is required");
+                }
+                if (ModelState.IsValid)
+                {
+                    var SuccessStatusCode = await gatewayManager.PostAsync<DataBasePerson>(uri, p);
+                    if (SuccessStatusCode.IsSuccessStatusCode)
+                    {
+                        return RedirectToHome();
+                    }
                 }
                 return View(p);
             }

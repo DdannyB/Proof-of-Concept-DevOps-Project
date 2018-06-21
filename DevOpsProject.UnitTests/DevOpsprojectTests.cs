@@ -64,7 +64,7 @@ namespace DevOpsProject.UnitTests
         {
             //arrange
             HttpResponseMessage rm = new HttpResponseMessage();
-            DataBasePerson p = new DataBasePerson
+            DataBasePerson person = new DataBasePerson
             {
                 Id = 5,
                 Name = "DB",
@@ -72,19 +72,17 @@ namespace DevOpsProject.UnitTests
             };
             Mock<GatewayManager> Mockconnection = new Mock<GatewayManager>();
             DatabaseController controller = new DatabaseController(Mockconnection.Object);
-
-            Mockconnection.Setup(mock => mock.PostAsync<DataBasePerson>(It.IsAny<string>(), p)).ReturnsAsync(rm);
             //act
-            var result = controller.Create(p).IsCompletedSuccessfully;
+            Mockconnection.Setup(mock => mock.PostAsync<DataBasePerson>(It.IsAny<string>(), person)).ReturnsAsync(rm);
             //assert
-            Assert.AreEqual(rm.IsSuccessStatusCode,result);
+            Mockconnection.Verify(mock => mock.PostAsync<DataBasePerson>(It.IsAny<string>(), person), Times.AtLeastOnce);
         }
         [TestMethod]
         public void FailPostAsync()
         {
             //arrange
             HttpResponseMessage rm = new HttpResponseMessage();
-            DataBasePerson p = new DataBasePerson
+            DataBasePerson person = new DataBasePerson
             {
                 Id = 5,
                 Name = "DB",
@@ -92,12 +90,12 @@ namespace DevOpsProject.UnitTests
             };
             Mock<GatewayManager> Mockconnection = new Mock<GatewayManager>();
             DatabaseController controller = new DatabaseController(Mockconnection.Object);
-
-            Mockconnection.Setup(mock => mock.PostAsync<DataBasePerson>(It.IsAny<string>(), p)).ReturnsAsync(rm);
             //act
-            var result = controller.Create(p).IsFaulted;
+            Mockconnection.Setup(mock => mock.PostAsync<DataBasePerson>(It.IsAny<string>(), person)).Throws(new Exception("error response"));
             //assert
-            Assert.AreNotEqual(rm.IsSuccessStatusCode, result);
+            Mockconnection.Verify(mock => mock.PostAsync<DataBasePerson>(It.IsAny<string>(), person), Times.Never);
+            
+
         }
     }
 }
