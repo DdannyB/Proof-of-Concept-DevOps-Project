@@ -12,7 +12,7 @@ namespace DevOpsProject.Controllers
     public class InspectController : Controller
     {
         // GET: /<controller>/
-        public async Task<IActionResult> Index(string url = "http://192.168.1.188:1230/secret")
+        public async Task<IActionResult> Index(string url = "test")
         {
             ViewBag.Url = url;
             try

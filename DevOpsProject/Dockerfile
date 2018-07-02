@@ -8,6 +8,7 @@ COPY DevOpsProject.sln ./
 COPY DevOpsProject/DevOpsProject.csproj DevOpsProject/
 RUN dotnet restore -nowarn:msb3202,nu1503
 COPY . .
+
 WORKDIR /src/DevOpsProject
 RUN dotnet build -c Release -o /app
 
@@ -17,4 +18,6 @@ RUN dotnet publish -c Release -o /app
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app .
-ENTRYPOINT ["dotnet", "DevOpsProject.dll"]
+COPY DevOpsProject/test.sh /app/test.sh
+
+ENTRYPOINT ["sh", "test.sh"]

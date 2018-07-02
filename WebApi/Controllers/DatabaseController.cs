@@ -8,7 +8,7 @@ using WebApi.Database;
 
 namespace WebApi.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/Database")]
     public class DatabaseController : Controller
     {
         private DannyStageDBContext _context;

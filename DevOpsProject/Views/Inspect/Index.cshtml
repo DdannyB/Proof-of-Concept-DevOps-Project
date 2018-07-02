@@ -1,11 +1,20 @@
 ﻿
 @{
     ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_layouttemplate.cshtml";
 }
 
-<h2>@ViewBag.Url</h2>
+<div class="services">
+    <div class="container">
+        <div class="text-left">
+        </div>
+        <div class="col-md-10 wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="300ms">
+            <h2>@ViewBag.Url</h2>
 
-<p>@ViewBag.StatusCode</p>
+            <p>@ViewBag.StatusCode</p>
 
-<p>@ViewBag.ErrorMessage</p>
+            <p>@ViewBag.ErrorMessage</p>
+            </div>
+        </div>
+    </div>
 

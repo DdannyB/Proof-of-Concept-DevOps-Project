@@ -1,15 +1,21 @@
-version: '3.6'
+version: '3'
 
 services:
   devopsproject:
-    image: database/devopsproject
+    image: dannybrouwers/devopsproject
     container_name: devopsprojectcontainer
+    ports:
+    - "1230:80"
+    environment:
+    - WEBAPI_ENVIRONMENT=webapicontainer
+    links:
+    - webapi
     build:
       context: .
       dockerfile: DevOpsProject/Dockerfile
 
   webapi:
-    image: database/webapi
+    image: dannybrouwers/webapi
     container_name: webapicontainer
     build:
       context: .

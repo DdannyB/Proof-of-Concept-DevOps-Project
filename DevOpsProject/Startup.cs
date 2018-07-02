@@ -36,6 +36,7 @@ namespace DevOpsProject
             {
                 app.UseBrowserLink();
                 app.UseDeveloperExceptionPage();
+                app.UseStaticFiles();
             }
             else
             {
@@ -48,7 +49,7 @@ namespace DevOpsProject
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Person}/{action=Index}/{id?}");
+                    template: "{controller=Home}/{action=Index}/{id?}");
             });
         }
     }

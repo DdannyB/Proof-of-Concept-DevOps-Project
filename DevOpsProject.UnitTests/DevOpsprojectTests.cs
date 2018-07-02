@@ -39,7 +39,7 @@ namespace DevOpsProject.UnitTests
 
             //act
             var controller = new DatabaseController(Mockconnection.Object);
-            var result = controller.Index().Result as ViewResult;
+            var result = controller.Userlist().Result as ViewResult;
 
             //assert
             Assert.AreEqual(expected, result.Model);
@@ -54,7 +54,7 @@ namespace DevOpsProject.UnitTests
             Mockconnection.Setup(mock => mock.GetlistAsync<DataBasePerson>(It.IsAny<string>())).Throws(new Exception(exmessage));
             //act
             var controller = new DatabaseController(Mockconnection.Object);
-            var result = controller.Index().Result as ViewResult;
+            var result = controller.Userlist().Result as ViewResult;
             //assert
             Assert.AreEqual(exmessage, ((List<DataBasePerson>)result.Model)[0].Name);
         }
@@ -75,7 +75,7 @@ namespace DevOpsProject.UnitTests
             //act
             Mockconnection.Setup(mock => mock.PostAsync<DataBasePerson>(It.IsAny<string>(), person)).ReturnsAsync(rm);
             //assert
-            Mockconnection.Verify(mock => mock.PostAsync<DataBasePerson>(It.IsAny<string>(), person), Times.AtLeastOnce);
+            Mockconnection.Verify(mock => mock.PostAsync<DataBasePerson>(It.IsAny<string>(), person), Times.Once);
         }
         [TestMethod]
         public void FailPostAsync()

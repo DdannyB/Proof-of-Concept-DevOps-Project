@@ -7,27 +7,32 @@ services:
     - personnetwork
     secrets:
     - my_external_secret
-    volumes:
-    - C:\Users\DevOpsProject\DevOpsProject\test.sh:/app/test.sh
     ports:
-    - "1230:80"
+    - "1231:80"
     environment:
     - WEBAPI_ENVIRONMENT=webapicontainer
+    deploy:
+      placement:
+        constraints: [node.role == worker]
     
   webapi:
     image: dannybrouwers/webapi
-    volumes:
-      - C:\Users\DevOpsProject\WebApi\appsettings.json:/app/appsettings.json
     deploy:
         replicas: 1   
+      placement:
+        constraints: [node.role == worker]
     networks:
       personnetwork:
         aliases: 
-          - webapicontainer
-      
+          - webapicontainer 
+
 secrets:
   my_external_secret:
     external: true
 
 networks:
   personnetwork:
+  
+volumes:
+  configuration:
+        external: true

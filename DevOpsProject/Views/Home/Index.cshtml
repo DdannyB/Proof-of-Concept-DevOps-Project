@@ -1,0 +1,186 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_layouttemplate.cshtml";
+}
+
+<div class="slider">
+    <div id="about-slider">
+        <div id="carousel-slider" class="carousel slide" data-ride="carousel">
+            <!-- Indicators -->
+            <ol class="carousel-indicators visible-xs">
+                <li data-target="#carousel-slider" data-slide-to="0" class="active"></li>
+                <li data-target="#carousel-slider" data-slide-to="1"></li>
+                <li data-target="#carousel-slider" data-slide-to="2"></li>
+                <li data-target="#carousel-slider" data-slide-to="3"></li>
+            </ol>
+
+            <div class="carousel-inner">
+                <div class="item active">
+                    <img src="~/img/3.jpg" class="img-responsive" alt="">
+                    <div class="carousel-caption">
+                        <div class="wow fadeInUp" data-wow-offset="1" data-wow-delay="0.3s">
+                        </div>
+                        <div class="col-md-10 col-md-offset-1">
+                            <div class="wow fadeInUp" data-wow-offset="1" data-wow-delay="0.6s">
+                                <p>Turnaround excellence by excellent software.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <img src="~/img/4.png" class="img-responsive" alt="">
+                    <div class="carousel-caption">
+                        <div class="wow fadeInUp" data-wow-offset="1" data-wow-delay="0.3s">
+                        </div>
+                        <div class="col-md-10 col-md-offset-1">
+                            <div class="wow fadeInUp" data-wow-offset="1" data-wow-delay="0.6s">
+                                <p>Containerization is the new virtualization.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <img src="~/img/2.jpg" class="img-responsive" alt="">
+                    <div class="carousel-caption">
+                        <div class="wow fadeInUp" data-wow-offset="1" data-wow-delay="0.3s">
+                        </div>
+                        <div class="col-md-10 col-md-offset-1">
+                            <div class="wow fadeInUp" data-wow-offset="1" data-wow-delay="0.6s">
+                                <p>Turn your ideas into solutions faster using a trusted cloud that is designed for you.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <img src="~/img/2.png" class="img-responsive" alt="">
+                    <div class="carousel-caption">
+                        <div class="wow fadeInUp" data-wow-offset="0" data-wow-delay="0.3s">
+                        </div>
+                        <div class="col-md-10 col-md-offset-1">
+                            <div class="wow fadeInUp" data-wow-offset="0" data-wow-delay="0.6s">
+                                <p>The most powerful tool we have as developers is automation.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <a class="left carousel-control hidden-xs" href="#carousel-slider" data-slide="prev">
+                <i class="fa fa-angle-left"></i>
+            </a>
+
+            <a class=" right carousel-control hidden-xs" href="#carousel-slider" data-slide="next">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        </div> <!--/#carousel-slider-->
+    </div><!--/#about-slider-->
+</div><!--/#slider-->
+
+<hr />
+<div class="services">
+    <div class="text-center">
+        <h2>Presentatie</h2>
+        <div class="form-group">
+            <a href="/Home/aanleiding" class="btn btn-primary btn-lg">Start presentatie</a>
+        </div>
+    </div>
+</div>
+<hr>
+<div class="services">
+    <div class="container">
+        <div class="text-center">
+            <h2>Requirements</h2>           
+        </div>
+        <div class="col-md-3 wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="300ms">
+            <i class="fa fa-cloud"></i>
+            <h3>Schaalbaarheid</h3>
+            <p>Er moeten extra services op aanvullende hardware gestart kunnen worden zodat meer verzoeken afgehandeld kunnen worden.</p>
+            <div class="form-group">
+                <a href="/Memory/Index" class="btn btn-primary btn-lg">Schaalbaarheidstest</a>
+            </div>
+        </div>
+        <div class="col-md-3 wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="600ms">
+            <i class="fa fa-lock"></i>
+            <h3>Beveiligde Secrets</h3>
+            <p>
+                Privacy gevoelige data moet geëncrypt opgeslagen worden zodat het niet in leesbare tekst opgeslagen wordt.
+            </p>
+            <br />
+            <div class="form-group">
+                <a href="/Secret/Index" class="btn btn-primary btn-lg">Secret test</a>
+            </div>
+        </div>
+        <div class="col-md-3 wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="900ms">
+            <i class="fa fa-book"></i>
+            <h3>Centrale plek voor het configueren van services</h3>
+            <p>
+                Er moeten beheertools beschikbaar zijn om de services te kunnen monitoren.
+            </p>
+            <br />
+            <div class="form-group">
+                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">Show File</button>
+                <div id="myModal" class="modal" role="dialog">
+                    <div class="modal-dialog">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Compose file</h4>
+                            </div>
+                            <div class="modal-body">
+                                <p>
+                                    <br /> version: '3.6'
+
+                                    <br /> services:
+                                    <br />  devopsproject:
+                                    <br />  image: dannybrouwers/devopsproject
+                                    <br />  container_name: devopsprojectcontainer
+                                    <br />  ports:
+                                    <br /> - "1230:80"
+                                    <br /> environment:
+                                    <br /> - WEBAPI_ENVIRONMENT=webapicontainer
+
+                                    <br /> webapi:
+                                    <br /> image: dannybrouwers/webapi
+                                    <br /> container_name: webapicontainer
+                                </p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="600ms">
+            <i class="fa fa-lock"></i>
+            <h3>Docker proces</h3>
+            <p>
+                Containers moeten aangemaakt worden.
+            </p>
+            <br />
+            <br />
+            <br />
+            <div class="form-group">
+                <a href="/Home/proces" class="btn btn-primary btn-lg">Docker proces</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="gallery">
+    <div class="text-center">
+        <h2>Deze opdracht is mede mogelijk gemaakt door:</h2>
+    </div>
+    <div class="container">
+        <div class="col-md-4">
+            <img src="~/img/zuyd.jpg" alt="" class="img-responsive" />
+        </div>
+        <div class="col-md-4">
+            <img src="~/img/3.jpg" alt="" class="img-responsive" />
+        </div>
+    </div>
+</div>
