@@ -11,15 +11,11 @@ namespace DevOpsProject.Controllers
 {
     public class SecretController : Controller
     {
-        public async Task <IActionResult> Index()
+        public  IActionResult Index()
         {
-                HttpClient client = new HttpClient();
-                HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, "http://192.168.1.188:1230/secret");
-                HttpResponseMessage response = await client.SendAsync(request);
                 string key = "my_external_secret";
                 ViewBag.Secret = GetSecretOrEnvVar(key);
                 ViewBag.Key = key;
-                ViewBag.StatusCode = response.StatusCode;
                 return View();
         }
 
