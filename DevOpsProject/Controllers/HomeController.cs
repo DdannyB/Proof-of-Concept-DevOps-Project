@@ -32,5 +32,10 @@ namespace DevOpsProject.Controllers
         {
             return View();
         }
+
+        public IActionResult Composefile()
+        {
+            return View();
+        }
     }
 }

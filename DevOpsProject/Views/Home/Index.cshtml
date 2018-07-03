@@ -16,7 +16,7 @@
             </ol>
 
             <div class="carousel-inner">
-                <div class="item active">
+                <div class="item active" >
                     <img src="~/img/3.jpg" class="img-responsive" alt="">
                     <div class="carousel-caption">
                         <div class="wow fadeInUp" data-wow-offset="1" data-wow-delay="0.3s">
@@ -96,6 +96,31 @@
             <div class="text-center">
                 <h2>Requirements</h2>
             </div>
+            <div class="col-md-3 wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="600ms">
+                <i class="fa fa-lock"></i>
+                <h3>Docker proces</h3>
+                <p>
+                    Containers moeten aangemaakt worden.
+                </p>
+                <br />
+                <br />
+                <br />
+                <div class="form-group">
+                    <a href="/Home/proces" class="btn btn-primary btn-lg">Docker proces</a>
+                </div>
+            </div>
+            <div class="col-md-3 wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="900ms">
+                <i class="fa fa-book"></i>
+                <h3>Centrale plek voor het configueren van services</h3>
+                <p>
+                    Er moeten beheertools beschikbaar zijn om de services te kunnen monitoren.
+                    <br />
+                    <br />
+                </p>
+                <div class="form-group">
+                    <a href="/Home/composefile" class="btn btn-primary btn-lg">Show file</a>
+                </div>
+            </div>
             <div class="col-md-3 wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="300ms">
                 <i class="fa fa-cloud"></i>
                 <h3>Schaalbaarheid</h3>
@@ -114,76 +139,6 @@
                 <div class="form-group">
                     <a href="/Secret/Index" class="btn btn-primary btn-lg">Secret test</a>
                 </div>
-            </div>
-            <div class="col-md-3 wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="900ms">
-                <i class="fa fa-book"></i>
-                <h3>Centrale plek voor het configueren van services</h3>
-                <p>
-                    Er moeten beheertools beschikbaar zijn om de services te kunnen monitoren.
-                </p>
-                <br />
-                <div class="form-group">
-                    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">Show File</button>
-                    <div id="myModal" class="modal" role="dialog">
-                        <div class="modal-dialog">
-                            <!-- Modal content-->
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                    <h4 class="modal-title">Compose file</h4>
-                                </div>
-                                <div class="modal-body">
-                                    <p>
-                                        <br /> version: '3.6'
-
-                                        <br /> services:
-                                        <br />  devopsproject:
-                                        <br />  image: dannybrouwers/devopsproject
-                                        <br />  container_name: devopsprojectcontainer
-                                        <br />  ports:
-                                        <br /> - "1230:80"
-                                        <br /> environment:
-                                        <br /> - WEBAPI_ENVIRONMENT=webapicontainer
-
-                                        <br /> webapi:
-                                        <br /> image: dannybrouwers/webapi
-                                        <br /> container_name: webapicontainer
-                                    </p>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="600ms">
-                <i class="fa fa-lock"></i>
-                <h3>Docker proces</h3>
-                <p>
-                    Containers moeten aangemaakt worden.
-                </p>
-                <br />
-                <br />
-                <br />
-                <div class="form-group">
-                    <a href="/Home/proces" class="btn btn-primary btn-lg">Docker proces</a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="gallery">
-        <div class="text-center">
-            <h2>Deze opdracht is mede mogelijk gemaakt door:</h2>
-        </div>
-        <div class="container">
-            <div class="col-md-4">
-                <img src="~/img/zuyd.jpg" alt="" class="img-responsive" />
-            </div>
-            <div class="col-md-4">
-                <img src="~/img/3.jpg" alt="" class="img-responsive" />
             </div>
         </div>
     </div>

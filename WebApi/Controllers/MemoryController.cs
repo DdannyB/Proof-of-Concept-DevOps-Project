@@ -34,6 +34,18 @@ namespace WebApi.Controllers
                         Id = 3,
                         Name = "DevOps",
                         Age = 1
+                    },
+                    new Person
+                    {
+                        Id = 4,
+                        Name = "Roser",
+                        Age = 8
+                    },
+                    new Person
+                    {
+                        Id = 5,
+                        Name = "Test",
+                        Age = 9
                     }
                 };
 

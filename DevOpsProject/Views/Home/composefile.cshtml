@@ -1,0 +1,75 @@
+﻿
+@{
+    ViewData["Title"] = "composefile";
+    Layout = "~/Views/Shared/_layouttemplate.cshtml";
+}
+
+<div class="services">
+    <div class="container">
+        <h1>Docker Compose file</h1>
+        <p>
+            <br />version: '3.6'
+            <br />
+            <br />services:
+            <br />devopsproject:
+            <br />image: dannybrouwers/devopsproject
+            <br />networks:
+            <br />- personnetwork
+            <br />volumes:
+            <br />- C:\Users\DevOpsProject\DevOpsProject\test.sh:/app/test.sh
+            <br />ports:
+            <br />- "1230:80"
+            <br />environment:
+            <br />- WEBAPI_ENVIRONMENT=webapicontainer
+            <br/>
+            <br />webapi:
+            <br />image: dannybrouwers/webapi
+            <br />volumes:
+            <br />- C:\Users\DevOpsProject\WebApi\appsettings.json:/app/appsettings.json
+            <br />networks:
+            <br />personnetwork:
+            <br />aliases:
+            <br />- webapicontainer
+            <br />
+            <br />networks:
+            <br />personnetwork:
+        </p>
+        <h1>Docker stack file</h1>
+        <p>
+            <br />version: '3.6'
+            <br />
+            <br />services:
+            <br />devopsproject:
+            <br />image: dannybrouwers/devopsproject
+            <br />networks:
+            <br />- personnetwork
+            <br />secrets:
+            <br />- my_external_secret
+            <br />volumes:
+            <br />- C:\Users\DevOpsProject\DevOpsProject\test.sh:/app/test.sh
+            <br />ports:
+            <br />- "1230:80"
+            <br />environment:
+            <br />- WEBAPI_ENVIRONMENT=webapicontainer
+            <br />
+            <br />webapi:
+            <br />image: dannybrouwers/webapi
+            <br />volumes:
+            <br />- C:\Users\DevOpsProject\WebApi\appsettings.json:/app/appsettings.json
+            <br />deploy:
+            <br />replicas: 1
+            <br />networks:
+            <br />personnetwork:
+            <br />aliases:
+            <br />- webapicontainer
+            <br />
+            <br />secrets:
+            <br />my_external_secret:
+            <br />external: true
+            <br />
+            <br />networks:
+            <br />personnetwork:
+        </p>
+    </div>
+</div>
+

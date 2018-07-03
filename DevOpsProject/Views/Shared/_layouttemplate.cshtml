@@ -49,6 +49,8 @@
 
             li a {
                 color: #fff;
+                font-size: 20px;
+
             }
 
             li:hover,
@@ -88,13 +90,19 @@
                 clear: both;
                 width: 100%;
             }
+
+        .carousel-inner > .item > img {
+            margin: auto;
+        }
+
+
     </style>
 </head>
 <body>
     <header id="header">
         <nav class="navbar navbar-default navbar-static-top" role="banner">
             <div class="navbar-brand">
-                <a href="/Database/Index"><h1>Proof of Concept</h1></a>
+                <a href="/Home/Index" style="font-size:20px;font-weight:bolder; color:white;">Proof of Concept</a>
             </div>
             <div class="container">
                 <div class="navbar-header">
@@ -119,64 +127,53 @@
     @RenderBody()
 
     <footer>
-        <div class="container">
-            <div class="col-md-4 wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="300ms">
-                <h4>Info</h4>
-                <div class="contact-info">
-                    <ul>
-                        <li>
-                            <i class="fa fa-home fa"></i>Roser ConSys B.V.,
-                            <br/> Burgemeester de Raadtsingel 67,
-                            <br />3311 JG Dordrecht,
-                            Nederland
-                        </li>
-                        <li><i class="fa fa-phone fa"></i>+31(0)78-6146288</li>
-                        <li><i class="fa fa-envelope fa"></i> info@roserconsys.com</li>
-                    </ul>
-                </div>
+    <div class="container">
+        <div class="col-md-4 wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="300ms">
+            <h4>Info Roser</h4>
+            <div class="contact-info">
+                <ul>
+                    <li>
+                        <i class="fa fa-home fa"></i>Roser ConSys B.V.
+                        <br /> Burgemeester de Raadtsingel 67,
+                        <br />3311 JG Dordrecht,
+                        Nederland
+                    </li>
+                    <li><i class="fa fa-envelope fa"></i> info@roserconsys.com</li>
+                    <li><i class="fa fa-phone fa"></i>+31(0)78-6146288</li>
+
+                </ul>
             </div>
+        </div>
+        <div class="col-md-4 wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="300ms">
+            <h4>Hogeschool Zuyd</h4>
+            <div class="contact-info">
+                <ul>
+                    <li>
+                        <i class="fa fa-home fa"></i>Hogeschool Zuyd
+                        <br /> Nieuw Eyckholt 300,
+                        <br />6419 DJ Heerlen,
+                        Nederland
+                    </li>
+                    <li><i class="fa fa-envelope fa"></i> info@zuydhogeschool.nl</li>
+                    <li><i class="fa fa-phone fa"></i>+31(0)45-4006060</li>
+                </ul>
             </div>
-            </footer>
+        </div>
+    </div>
+    </footer>
 
-            <div class="sub-footer">
-                <div class="container">
-                    <div class="social-icon">
-                        <div class="col-md-4">
-                            <ul class="social-network">
-                                <li><a href="#" class="fb tool-tip" title="Facebook"><i class="fa fa-facebook"></i></a></li>
-                                <li><a href="#" class="twitter tool-tip" title="Twitter"><i class="fa fa-twitter"></i></a></li>
-                                <li><a href="#" class="gplus tool-tip" title="Google Plus"><i class="fa fa-google-plus"></i></a></li>
-                                <li><a href="#" class="linkedin tool-tip" title="Linkedin"><i class="fa fa-linkedin"></i></a></li>
-                                <li><a href="#" class="ytube tool-tip" title="You Tube"><i class="fa fa-youtube-play"></i></a></li>
-                            </ul>
-                        </div>
-                    </div>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="~/js/jquery.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="~/js/bootstrap.min.js"></script>
+    <script src="~/js/wow.min.js"></script>
+    <script>
+        wow = new WOW(
+            {
 
-                    <div class="col-md-4 col-md-offset-4">
-                        <div class="copyright">
-                            &copy; Day 2015 by <a target="_blank" href="http://bootstraptaste.com/" title="Free Twitter Bootstrap WordPress Themes and HTML templates">Bootstrap Themes</a>.All Rights Reserved.
-                        </div>
-                        <!--
-                            All links in the footer should remain intact.
-                            Licenseing information is available at: http://bootstraptaste.com/license/
-                            You can buy this theme without footer links online at: http://bootstraptaste.com/buy/?theme=Day
-                        -->
-                    </div>
-                </div>
-            </div>
-
-            <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-            <script src="~/js/jquery.js"></script>
-            <!-- Include all compiled plugins (below), or include individual files as needed -->
-            <script src="~/js/bootstrap.min.js"></script>
-            <script src="~/js/wow.min.js"></script>
-            <script>
-                wow = new WOW(
-                    {
-
-                    })
-                    .init();
-            </script>
+            })
+            .init();
+    </script>
 
 </body>
 </html>

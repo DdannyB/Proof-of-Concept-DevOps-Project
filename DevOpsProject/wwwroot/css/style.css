@@ -23,7 +23,7 @@ hi,h2,h3,h4,h5,h6 {
 
 p {
 	color:black;
-	font-size:13px;
+	font-size:15px;
 }
 a {
     text-decoration:none;
@@ -187,11 +187,11 @@ a:hover {
 }
 
 .carousel-caption {
-	position: absolute;
-	right: 15%;
-	bottom: 300px;
+	position: center;
+	right: 25%;
+	bottom: 250px;
 	font-size:40px;
-	left: 15%;
+	left: 25%;
 	z-index: 10;
 	padding-bottom: 0px;
 	color: #fff;
